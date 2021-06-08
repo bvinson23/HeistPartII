@@ -128,6 +128,14 @@ namespace HeistPartII
                 SecurityGuardScore = i.Next(0, 100),
                 CashOnHand = i.Next(50000, 1000000)
             };
+
+            Console.WriteLine("----------------");
+            Console.WriteLine("| Recon Report |");
+            Console.WriteLine("----------------");
+            Console.WriteLine();
+
+            string mostSecure = Math.Max(bank.AlarmScore, Math.Max(bank.SecurityGuardScore, bank.VaultScore)).ToString();
+            Console.WriteLine($"Most Secure System: {mostSecure}");
         }
     }
 }
