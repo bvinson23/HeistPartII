@@ -119,6 +119,15 @@ namespace HeistPartII
                 }
             }
             Create();
+
+            Random i = new Random();
+            Bank bank = new Bank()
+            {
+                AlarmScore = i.Next(0, 100),
+                VaultScore = i.Next(0, 100),
+                SecurityGuardScore = i.Next(0, 100),
+                CashOnHand = i.Next(50000, 1000000)
+            };
         }
     }
 }
