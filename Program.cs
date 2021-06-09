@@ -136,7 +136,7 @@ namespace HeistPartII
                 AlarmScore = i.Next(0, 100),
                 VaultScore = i.Next(0, 100),
                 SecurityGuardScore = i.Next(0, 100),
-                CashOnHand = i.Next(50000, 1000000)
+                CashOnHand = 100 //i.Next(50000, 1000000)
             };
 
             Console.WriteLine("----------------");
@@ -252,7 +252,7 @@ namespace HeistPartII
                     Console.WriteLine($"{r.Name} got ${payout}");
                 }
 
-                Console.WriteLine($"After paying your crew, you're left with ${bank.CashOnHand - payout}");
+                Console.WriteLine($"After paying your crew, you're left with ${bank.CashOnHand - ((cut*bank.CashOnHand)/100)}");
             }
         }
     }
