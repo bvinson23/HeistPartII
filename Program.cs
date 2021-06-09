@@ -134,8 +134,39 @@ namespace HeistPartII
             Console.WriteLine("----------------");
             Console.WriteLine();
 
-            string mostSecure = Math.Max(bank.AlarmScore, Math.Max(bank.SecurityGuardScore, bank.VaultScore)).ToString();
-            Console.WriteLine($"Most Secure System: {mostSecure}");
+            if (bank.AlarmScore > bank.VaultScore && bank.AlarmScore > bank.SecurityGuardScore)
+            {
+                if (bank.VaultScore > bank.SecurityGuardScore)
+                {
+                    Console.WriteLine("Most Secure: Alarm       Least Secure: Security Guard");
+                }
+                else
+                {
+                    Console.WriteLine("Most Secure Alarm        Least Secure: Vault");
+                }
+            }
+            else if (bank.VaultScore > bank.AlarmScore && bank.VaultScore > bank.SecurityGuardScore)
+            {
+                if (bank.AlarmScore > bank.SecurityGuardScore)
+                {
+                    Console.WriteLine("Most Secure: Vault       Least Secure: Security Guard");
+                }
+                else
+                {
+                    Console.WriteLine("Most Secure: Vault       Least Secure: Alarm");
+                }
+            }
+            else
+            {
+                if (bank.VaultScore > bank.AlarmScore)
+                {
+                    Console.WriteLine("Most Secure: Security Guard      Least Secure: Alarm");
+                }
+                else
+                {
+                    Console.WriteLine("Most Secure: Security Guard      Least Secure: Vault");
+                }
+            }
         }
     }
 }
