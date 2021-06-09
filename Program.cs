@@ -15,15 +15,15 @@ namespace HeistPartII
             LockSpecialist jake = new LockSpecialist()
             {
                 Name = "Jake Peralta",
-                SkillLevel = 55,
-                PercentageCut = 40,
+                SkillLevel = 80,
+                PercentageCut = 33,
                 Specialty = "Lock Specialist"
             };
 
             LockSpecialist pontiac = new LockSpecialist()
             {
                 Name = "Pontiac Bandit",
-                SkillLevel = 65,
+                SkillLevel = 99,
                 PercentageCut = 50,
                 Specialty = "Lock Specialist"
             };
@@ -31,7 +31,7 @@ namespace HeistPartII
             Hacker boyle = new Hacker()
             {
                 Name = "Charles Boyle",
-                SkillLevel = 35,
+                SkillLevel = 65,
                 PercentageCut = 20,
                 Specialty = "Hacker"
             };
@@ -39,7 +39,7 @@ namespace HeistPartII
             Hacker amy = new Hacker()
             {
                 Name = "Amy Santiago",
-                SkillLevel = 45,
+                SkillLevel = 70,
                 PercentageCut = 30,
                 Specialty = "Hacker"
             };
@@ -55,8 +55,8 @@ namespace HeistPartII
             Muscle terry = new Muscle()
             {
                 Name = "Terry Jeffords",
-                SkillLevel = 75,
-                PercentageCut = 50,
+                SkillLevel = 77,
+                PercentageCut = 33,
                 Specialty = "Muscle"
             };
 
