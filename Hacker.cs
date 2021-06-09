@@ -13,6 +13,8 @@ namespace HeistPartII
             int skill = bank.AlarmScore - SkillLevel;
             
             Console.WriteLine($"{Name} is hacking the alarm system. Decreased scurity {SkillLevel} points.");
+            
+            bank.AlarmScore = skill;
 
             if (bank.AlarmScore <= 0)
             {

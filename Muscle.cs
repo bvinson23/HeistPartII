@@ -14,7 +14,9 @@ namespace HeistPartII
 
             Console.WriteLine($"{Name} is dealing with the guards. Decreased security {SkillLevel} points.");
 
-            if (bank.AlarmScore <= 0)
+            bank.SecurityGuardScore = skill;
+
+            if (bank.SecurityGuardScore <= 0)
             {
                 Console.WriteLine($"{Name} has neutralized the guards!");
             }

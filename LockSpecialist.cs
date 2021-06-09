@@ -14,6 +14,8 @@ namespace HeistPartII
 
             Console.WriteLine($"{Name} is picking the vault lock. Decreased lock {SkillLevel} points.");
 
+            bank.VaultScore = skill;
+
             if (bank.VaultScore <= 0)
             {
                 Console.WriteLine($"{Name} has picked the lock!");

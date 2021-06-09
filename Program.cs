@@ -230,6 +230,30 @@ namespace HeistPartII
             Console.WriteLine("------------------");
             Console.WriteLine("| Time to Heist! |");
             Console.WriteLine("------------------");
+
+            foreach (IRobber r in crew)
+            {
+                r.PerformSkill(bank);
+            }
+
+            if (bank.IsSecure())
+            {
+                Console.WriteLine("You've lost. I said good day sir!");
+            }
+            else
+            {
+                Console.WriteLine("You won!");
+                int cut = 0;
+                int payout = 0;
+                foreach (IRobber r in crew)
+                {
+                    cut += r.PercentageCut;
+                    payout = r.PercentageCut * bank.CashOnHand / 100;
+                    Console.WriteLine($"{r.Name} got ${payout}");
+                }
+
+                Console.WriteLine($"After paying your crew, you're left with ${bank.CashOnHand - payout}");
+            }
         }
     }
 }
