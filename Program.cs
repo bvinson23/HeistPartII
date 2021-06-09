@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HeistPartII
 {
@@ -143,57 +144,92 @@ namespace HeistPartII
             Console.WriteLine("----------------");
             Console.WriteLine();
 
-            if (bank.AlarmScore > bank.VaultScore && bank.AlarmScore > bank.SecurityGuardScore)
+            void Recon()
             {
-                if (bank.VaultScore > bank.SecurityGuardScore)
+                if (bank.AlarmScore > bank.VaultScore && bank.AlarmScore > bank.SecurityGuardScore)
                 {
-                    Console.WriteLine("Most Secure: Alarm       Least Secure: Security Guard");
+                    if (bank.VaultScore > bank.SecurityGuardScore)
+                    {
+                        Console.WriteLine("Most Secure: Alarm       Least Secure: Security Guard");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Most Secure Alarm        Least Secure: Vault");
+                    }
+                }
+                else if (bank.VaultScore > bank.AlarmScore && bank.VaultScore > bank.SecurityGuardScore)
+                {
+                    if (bank.AlarmScore > bank.SecurityGuardScore)
+                    {
+                        Console.WriteLine("Most Secure: Vault       Least Secure: Security Guard");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Most Secure: Vault       Least Secure: Alarm");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Most Secure Alarm        Least Secure: Vault");
-                }
-            }
-            else if (bank.VaultScore > bank.AlarmScore && bank.VaultScore > bank.SecurityGuardScore)
-            {
-                if (bank.AlarmScore > bank.SecurityGuardScore)
-                {
-                    Console.WriteLine("Most Secure: Vault       Least Secure: Security Guard");
-                }
-                else
-                {
-                    Console.WriteLine("Most Secure: Vault       Least Secure: Alarm");
-                }
-            }
-            else
-            {
-                if (bank.VaultScore > bank.AlarmScore)
-                {
-                    Console.WriteLine("Most Secure: Security Guard      Least Secure: Alarm");
-                }
-                else
-                {
-                    Console.WriteLine("Most Secure: Security Guard      Least Secure: Vault");
+                    if (bank.VaultScore > bank.AlarmScore)
+                    {
+                        Console.WriteLine("Most Secure: Security Guard      Least Secure: Alarm");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Most Secure: Security Guard      Least Secure: Vault");
+                    }
                 }
             }
             Console.WriteLine("------------------------------------------------------------");
 
-            int index = 1;
             List<IRobber> crew = new List<IRobber>();
 
-            Console.WriteLine("---------------");
-            Console.WriteLine("| The Rolodex |");
-            Console.WriteLine("---------------");
-            foreach (IRobber robber in rolodex)
+            while (true)
             {
-                Console.WriteLine($@"Name: {robber.Name}
+                Recon();
+                Console.WriteLine("---------------");
+                Console.WriteLine("| The Rolodex |");
+                Console.WriteLine("---------------");
+
+                int index = 1;
+                var selectionList = rolodex.Except(crew).ToList();
+                foreach (IRobber robber in selectionList)
+                {
+                    Console.WriteLine($@"Name: {robber.Name}
                 Skill: {robber.SkillLevel}
-                Cut of the Loot: {robber.PercentageCut}
+                Cut of the Loot: {robber.PercentageCut}%
                 RobberId: {index}
                 Specialty: {robber.Specialty}
                 ");
-                index++;
+                    index++;
+                }
+
+                Console.Write("Enter the index of the robber you would like to add to your crew: ");
+                string member = Console.ReadLine();
+                if (member == "")
+                {
+                    break;
+                }
+
+                int cut = 0;
+                foreach (IRobber r in crew)
+                {
+                    cut += r.PercentageCut;
+                }
+                cut = cut + selectionList[Int32.Parse(member) - 1].PercentageCut;
+                if (cut < 100)
+                {
+                    crew.Add(selectionList[Int32.Parse(member) - 1]);
+                }
+                else
+                {
+                    Console.WriteLine("They're take is too high, choose someone else.");
+                    Console.WriteLine();
+                }
             }
+            Console.WriteLine("------------------");
+            Console.WriteLine("| Time to Heist! |");
+            Console.WriteLine("------------------");
         }
     }
 }
