@@ -136,7 +136,7 @@ namespace HeistPartII
                 AlarmScore = i.Next(0, 100),
                 VaultScore = i.Next(0, 100),
                 SecurityGuardScore = i.Next(0, 100),
-                CashOnHand = 100 //i.Next(50000, 1000000)
+                CashOnHand = i.Next(50000, 1000000)
             };
 
             Console.WriteLine("----------------");
