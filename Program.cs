@@ -15,42 +15,48 @@ namespace HeistPartII
             {
                 Name = "Jake Peralta",
                 SkillLevel = 55,
-                PercentageCut = 40
+                PercentageCut = 40,
+                Specialty = "Lock Specialist"
             };
 
             LockSpecialist pontiac = new LockSpecialist()
             {
                 Name = "Pontiac Bandit",
                 SkillLevel = 65,
-                PercentageCut = 50
+                PercentageCut = 50,
+                Specialty = "Lock Specialist"
             };
 
             Hacker boyle = new Hacker()
             {
                 Name = "Charles Boyle",
                 SkillLevel = 35,
-                PercentageCut = 20
+                PercentageCut = 20,
+                Specialty = "Hacker"
             };
 
             Hacker amy = new Hacker()
             {
                 Name = "Amy Santiago",
                 SkillLevel = 45,
-                PercentageCut = 30
+                PercentageCut = 30,
+                Specialty = "Hacker"
             };
 
             Muscle rosa = new Muscle()
             {
                 Name = "Rosa Diaz",
                 SkillLevel = 60,
-                PercentageCut = 35
+                PercentageCut = 35,
+                Specialty = "Muscle"
             };
 
             Muscle terry = new Muscle()
             {
                 Name = "Terry Jeffords",
                 SkillLevel = 75,
-                PercentageCut = 50
+                PercentageCut = 50,
+                Specialty = "Muscle"
             };
 
             List<IRobber> rolodex = new List<IRobber>()
@@ -87,7 +93,8 @@ namespace HeistPartII
                         {
                             Name = name,
                             SkillLevel = skill,
-                            PercentageCut = cut
+                            PercentageCut = cut,
+                            Specialty = "Hacker"
                         };
                         rolodex.Add(hacker);
                     }
@@ -97,7 +104,8 @@ namespace HeistPartII
                         {
                             Name = name,
                             SkillLevel = skill,
-                            PercentageCut = cut
+                            PercentageCut = cut,
+                            Specialty = "Muscle"
                         };
                         rolodex.Add(muscle);
                     }
@@ -107,7 +115,8 @@ namespace HeistPartII
                         {
                             Name = name,
                             SkillLevel = skill,
-                            PercentageCut = cut
+                            PercentageCut = cut,
+                            Specialty = "Lock Specialist"
                         };
                         rolodex.Add(lockSpecialist);
                     }
@@ -166,6 +175,24 @@ namespace HeistPartII
                 {
                     Console.WriteLine("Most Secure: Security Guard      Least Secure: Vault");
                 }
+            }
+            Console.WriteLine("------------------------------------------------------------");
+
+            int index = 1;
+            List<IRobber> crew = new List<IRobber>();
+
+            Console.WriteLine("---------------");
+            Console.WriteLine("| The Rolodex |");
+            Console.WriteLine("---------------");
+            foreach (IRobber robber in rolodex)
+            {
+                Console.WriteLine($@"Name: {robber.Name}
+                Skill: {robber.SkillLevel}
+                Cut of the Loot: {robber.PercentageCut}
+                RobberId: {index}
+                Specialty: {robber.Specialty}
+                ");
+                index++;
             }
         }
     }
